@@ -1,0 +1,17 @@
+#{extends 'base.html' /}
+#{set title:'Login' /}
+
+<h2>Login</h2>
+
+<form class="form-signin" action="/logged_in" method="POST">
+    <h2 class="form-signin-heading">Please Login</h2>
+
+    <div class="form-group">
+        <label>Enter your user_id:</label>
+        </br>
+        <input type="text" name="user_id"></input>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+    
+</form>

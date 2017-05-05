@@ -1,0 +1,23 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Application.index
+GET     /logout                                 Application.logout
+GET     /login                                  Application.login
+GET     /movies                                 Application.movie_list
+GET     /movies/{movie_id}                      Application.show_movie
+GET     /users                                  Application.user_list
+GET     /users/{user_id}                        Application.show_user
+POST    /logged_in                              Application.is_logged_in
+POST    /new_rating                             Application.add_new_rating
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

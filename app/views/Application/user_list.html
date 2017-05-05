@@ -1,0 +1,15 @@
+#{extends 'base.html' /}
+#{set title:'Users' /}
+
+<div class="user-details">
+    <h2>Users</h2>
+    <ul>
+        #{list items:users, as:'user'}
+        <li>
+            <a href="/users/${user.user_id}">
+                ${user.user_id}
+            </a>
+        </li>
+        #{/list}
+    </ul>
+</div>

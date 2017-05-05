@@ -1,0 +1,37 @@
+#{extends 'base.html' /}
+#{set title:'Home' /}
+
+<div>
+    <img src="@{'/public/images/logo.png'}">
+</div>
+
+<h2>Recommend Movies</h2>
+
+<div id="movies-list" class="row">
+    #{list items:movies, as:'movie'}
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 melon-summary">
+        <div class="well">
+            <a href="/movies/${movie.movie_id}">
+                ${movie.title}
+            </a>
+        </div>
+    </div>
+    #{/list}
+</div>
+
+<div>
+    <h1>Ratings</h1>
+
+    <p class="lead">Ratings when you want them.</p>
+
+    <h2>Movies</h2>
+    <p><a href="/movies">View all movies</a></p>
+
+    <h2>Users</h2>
+    <p><a href="/users">View all users</a></p>
+
+</div>
+
+<footer>
+    <p>Copyright Ratings 2017. All rights reserved.</p>
+</footer>

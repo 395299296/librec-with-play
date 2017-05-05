@@ -1,0 +1,49 @@
+#{extends 'base.html' /}
+#{set title:'Details for Movies' /}
+
+<h2>Details for Movies</h2>
+Title: ${movie.title}
+#{if current_user}
+    <h2>Your Rating</h2>
+    #{if user_rating}
+        <p>You currently rate this a ${user_rating.score}</p>
+    #{/if}
+    #{else}
+        <p>You did not rate this movie, yet.</p>
+    #{/else}
+    <form action="/new_rating" method="POST">
+        <input type="number" min="1" max="5" name="new_rating" placeholder="1-5"> 
+        <input type="hidden" name="movie_id" value="${movie.movie_id}">
+        <input type="submit" value="Submit">
+    </form>
+#{/if}
+
+<p>Average rating: ${average}</p>
+#{if prediction}
+    <p>We predict you will rate this movie ${prediction}.</p>
+#{/if}
+
+#{if eye_rating}
+    <h2>The Judgmental Eye</h2>
+    <p>Eye Rating: <b>${eye_rating}</b></p>
+    #{if difference}
+        <p>Difference: <b>${difference}</b></p>
+    #{/if}
+    #{if beratement}
+        <p>The Eye says: <b>${beratement}</b></p>
+    #{/if}
+#{/if}
+
+<table>
+    <tr>
+        <th> Ratings </th>
+    </tr>
+    #{list items:movie.ratings, as:'rating'}
+    <tr>
+        <td>
+            <a href="/users/${rating.user.user_id}">${rating.user.user_id}</a>
+            rated ${rating.score}
+        </td>
+    </tr>
+    #{/list}
+</table>

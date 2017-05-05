@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>#{get 'title' /}</title>
+    <link rel="stylesheet"
+          href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.css"/>
+    <link rel="stylesheet" href="@{'/public/stylesheets/site.css'}"/>
+    #{get 'moreStyles' /}
+    <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+</head>
+
+<div class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+
+        <div class="navbar-header">
+            <img src="@{'/public/images/logo.png'}">
+            <a class="navbar-brand" href="/">Homepage</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="@{Application.logout()}">Logout</a></li>
+                <li><a href="@{Application.login()}">Login</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<body>
+    <div class="container">
+
+        #{if flash.contains("message")}
+            <ul class=flashes>
+                <div class="alert alert-warning">${flash.get("message")}</div>
+            </ul>
+        #{/if}
+
+        <h1>Our Ratings</h1>
+        <hr>
+
+        #{doLayout /}
+
+    </div>
+</body>
+</html>
