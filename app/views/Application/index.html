@@ -8,14 +8,16 @@
 <h2>Recommend Movies</h2>
 
 <div id="movies-list" class="row">
+    #{set count:1/}
     #{list items:movies, as:'movie'}
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 melon-summary">
         <div class="well">
             <a href="/movies/${movie.movie_id}">
-                ${movie.title}
+                ${count}.${movie.title}
             </a>
         </div>
     </div>
+    #{set count:count+1/}
     #{/list}
 </div>
 

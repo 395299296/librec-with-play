@@ -18,6 +18,7 @@ import net.librec.conf.Configuration;
 import net.librec.data.convertor.TextDataConvertor;
 import net.librec.data.model.ArffInstance;
 import net.librec.data.model.TextDataModel;
+import net.librec.math.structure.DataSet;
 import net.librec.math.structure.SparseMatrix;
 import net.librec.similarity.*;
 
@@ -28,9 +29,15 @@ public class Bootstrap extends Job {
 	
 	@Override
     public void doJob() throws LibrecException {  
-    	
+
 		long start = 0;
 		long end = 0;
+		
+		// initialize recommend system
+		start = System.currentTimeMillis();
+		RecommendMgr.getInstance().init();
+		end = System.currentTimeMillis();
+        LOG.info( "Init recommender costs " + (end - start) + " milliseconds" );
 		
 		// load movie set
 		start = System.currentTimeMillis();
@@ -86,7 +93,7 @@ public class Bootstrap extends Job {
 			e.printStackTrace();
 		}
 
-		SparseMatrix preference = dataConvertor.getPreferenceMatrix();
+		SparseMatrix preference = (SparseMatrix) RecommendMgr.getInstance().getDataModel().getTrainDataSet();
 		Table<Integer, Integer, Double> dataTable = preference.getDataTable();
 		BiMap<String, Integer> userIds = dataConvertor.getUserIds();
 		BiMap<String, Integer> itemIds = dataConvertor.getItemIds();
@@ -117,9 +124,6 @@ public class Bootstrap extends Job {
 		}
 		end = System.currentTimeMillis();
         LOG.info( "Load rating set costs " + (end - start) + " milliseconds" );
-		
-		// initialize recommend system
-		RecommendMgr.getInstance().init();
     }
       
 }

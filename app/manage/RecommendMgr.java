@@ -29,6 +29,7 @@ public class RecommendMgr {
     private static RecommendMgr instance;
     
     private Recommender recommender;
+    private TextDataModel dataModel;
     
     private RecommendMgr () {
     	 
@@ -43,12 +44,16 @@ public class RecommendMgr {
 		}
 		return instance;
 	}
+	
+	public TextDataModel getDataModel() {
+		return dataModel;
+	}
 	     
 	public void init() {
 		Configuration conf = new Configuration();
         conf.set("dfs.data.dir", "data");
         conf.set("data.input.path", "u.data");
-		TextDataModel dataModel = new TextDataModel(conf);
+		dataModel = new TextDataModel(conf);
         try {
 			dataModel.buildDataModel();
 		} catch (LibrecException e) {
