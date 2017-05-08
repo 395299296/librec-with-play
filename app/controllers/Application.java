@@ -6,6 +6,7 @@ import play.mvc.*;
 
 import java.util.*;
 
+import manage.RecommendMgr;
 import models.*;
 
 public class Application extends Controller {
@@ -20,11 +21,11 @@ public class Application extends Controller {
             }
         });
     	List<Movie> movies = new ArrayList<>();
-    	for (Movie movie:Movie.allMovies) {
-    		if (movies.size() >= 12)
-    			break;
-    		movies.add(movie);
-    	}
+    	String user_id = session.get("user_id");
+    	if (user_id == null)
+    		movies = RecommendMgr.getInstance().getDefaultItemList();
+    	else
+    		movies = RecommendMgr.getInstance().getFilterItemList(user_id);
         render("@index", movies);
     }
     
