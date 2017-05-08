@@ -85,7 +85,7 @@
 	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/guava-15.0.jar"/>
 	<classpathentry kind="lib" path="lib/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="lib/librec-core-2.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/librec-core-2.0.0.jar" sourcepath="/librec-core"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="output" path="eclipse/classes"/>
 </classpath>
