@@ -6,8 +6,7 @@ import java.util.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.Table;
+import com.google.common.collect.*;
 
 import common.Util;
 import manage.RecommendMgr;
