@@ -1,6 +1,8 @@
 package manage;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -86,6 +88,11 @@ public class RecommendMgr {
 	}
 	
 	public List<Movie> getDefaultItemList() {
+		Collections.sort(Movie.allMovies, new Comparator<Movie>() {
+            public int compare(Movie m1, Movie m2) {
+                return m2.avg_rating.compareTo(m1.avg_rating);
+            }
+        });
 		List<Movie> movies = new ArrayList<>();
     	for (Movie movie:Movie.allMovies) {
     		if (movies.size() >= 12)

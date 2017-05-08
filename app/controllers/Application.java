@@ -15,11 +15,7 @@ public class Application extends Controller {
 	 * Home page.
 	 */
     public static void index() {
-    	Collections.sort(Movie.allMovies, new Comparator<Movie>() {
-            public int compare(Movie m1, Movie m2) {
-                return m2.avg_rating.compareTo(m1.avg_rating);
-            }
-        });
+    	// show recommended movie list
     	List<Movie> movies = new ArrayList<>();
     	String user_id = session.get("user_id");
     	if (user_id == null)
