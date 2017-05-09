@@ -85,18 +85,11 @@ public class Bootstrap extends Job {
 		
 		// load rating set
         start = System.currentTimeMillis();
-		TextDataConvertor dataConvertor = new TextDataConvertor("data/u.data");
-		try {
-			dataConvertor.processData();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		SparseMatrix preference = (SparseMatrix) RecommendMgr.getInstance().getDataModel().getTrainDataSet();
+		TextDataModel dataModel = RecommendMgr.getInstance().getDataModel();
+		SparseMatrix preference = (SparseMatrix) dataModel.getTrainDataSet();
 		Table<Integer, Integer, Double> dataTable = preference.getDataTable();
-		BiMap<String, Integer> userIds = dataConvertor.getUserIds();
-		BiMap<String, Integer> itemIds = dataConvertor.getItemIds();
+		BiMap<String, Integer> userIds = dataModel.getUserMappingData();
+		BiMap<String, Integer> itemIds = dataModel.getItemMappingData();
 		for (Map.Entry<String, Integer> userId : userIds.entrySet()) {
 			for (Map.Entry<String, Integer> itemId : itemIds.entrySet()) {
 				Object value = dataTable.get(userId.getValue(), itemId.getValue());
